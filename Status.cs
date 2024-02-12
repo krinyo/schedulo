@@ -1,5 +1,7 @@
-public Status
-{
-    public ind Id {get;set;}
-    public string StatusName {get;set;}
+namespace schedulo{
+    public class Status
+    {
+        public int Id {get;set;}
+        public string? StatusName {get;set;}
+    }
 }
