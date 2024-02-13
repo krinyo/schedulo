@@ -125,6 +125,5 @@ D:\c#solutions\taskSCHEDULER\schedulo\bin\Debug\net8.0-windows\runtimes\win-arm\
 D:\c#solutions\taskSCHEDULER\schedulo\bin\Debug\net8.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
 D:\c#solutions\taskSCHEDULER\schedulo\bin\Debug\net8.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 D:\c#solutions\taskSCHEDULER\schedulo\bin\Debug\net8.0-windows\runtimes\win-x86\native\e_sqlite3.dll
-D:\c#solutions\taskSCHEDULER\schedulo\obj\Debug\net8.0-windows\schedulo.MainWindow.resources
 D:\c#solutions\taskSCHEDULER\schedulo\obj\Debug\net8.0-windows\schedulo.csproj.GenerateResource.cache
-D:\c#solutions\taskSCHEDULER\schedulo\obj\Debug\net8.0-windows\schedulo.TaskForm.resources
+D:\c#solutions\taskSCHEDULER\schedulo\obj\Debug\net8.0-windows\schedulo.Views.MainView.resources

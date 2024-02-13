@@ -1,4 +1,4 @@
-namespace schedulo
+namespace schedulo.Models
 {
     public class User
     {

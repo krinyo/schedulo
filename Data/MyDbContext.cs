@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using schedulo.Models;
 
-namespace schedulo
+namespace schedulo.Data
 {
     public class MyDbContext : DbContext
     {
         private readonly IConfiguration Configuration;
         public DbSet<User> Users { get; set; }
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Models.Task> Tasks { get; set; }
         public DbSet<Status> Statuses { get; set; }
 
         public MyDbContext(IConfiguration configuration)
