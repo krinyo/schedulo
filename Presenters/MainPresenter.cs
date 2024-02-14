@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using schedulo.Data;
 using schedulo.Models;
 using schedulo.Views;
@@ -24,7 +25,7 @@ namespace schedulo.Presenters
 
         public void LoadTasks()
         {
-            var tasks = _context.Tasks.ToList();
+            var tasks = _context.Tasks.Include(t => t.TaskStatus).ToList();
             _view.DisplayTasks(tasks);
         }
 
@@ -45,8 +46,22 @@ namespace schedulo.Presenters
 
         private void OnAdvanceTask(int taskId)
         {
-            // Здесь вы можете добавить логику продвижения задачи
-            // ...
+            if (taskId >= 0)
+            {
+                var task = _context.Tasks.Where(t => t.Id == taskId).FirstOrDefault();
+                var nextStatus = _context.Statuses
+                    .Where(s => s.Order > task.TaskStatus.Order)
+                    .OrderBy(s => s.Order)
+                    .FirstOrDefault();
+                if (nextStatus != null)
+                {
+                    task.TaskStatus = nextStatus;
+                    _context.SaveChanges();
+                    LoadTasks();
+                }
+            }
         }
+
+
     }
 }

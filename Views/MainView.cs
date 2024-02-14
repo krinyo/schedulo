@@ -19,19 +19,44 @@ namespace schedulo.Views
         {
             InitializeComponent();
             this.createTaskButton.Click += (sender, e) => CreateTask?.Invoke(taskContentTextBox.Text);
-            this.tasksListBox.SelectedIndexChanged += (sender, e) => AdvanceTask?.Invoke(tasksListBox.SelectedIndex);
+            this.advanceTaskButton.Click += advanceTaskButton_Click;
         }
 
 
         public void DisplayTasks(List<Models.Task> tasks)
         {
-            tasksListBox.Items.Clear();
+            newTasksListBox.Items.Clear();
+            endedTasksListBox.Items.Clear();
             foreach (var task in tasks)
             {
-                tasksListBox.Items.Add($"{task.Content} - {task.TaskStatus}");
+                if (task.TaskStatus.StatusName == "Новая")
+                {
+                    newTasksListBox.Items.Add(new Tuple<string, int>($"{task.Content} - {task.TaskStatus.StatusName}", task.Id));
+                }
+                else if (task.TaskStatus.StatusName == "Выполненная")
+                {
+                    endedTasksListBox.Items.Add(new Tuple<string, int>($"{task.Content} - {task.TaskStatus.StatusName}", task.Id));
+                }
+            }
+        }
+        private void advanceTaskButton_Click(object sender, EventArgs e)
+        {
+            if (newTasksListBox.SelectedItem != null)
+            {
+                var selectedTaskId = ((Tuple<string, int>)newTasksListBox.SelectedItem).Item2;
+                AdvanceTask?.Invoke(selectedTaskId);
             }
         }
 
+        private void taskContentTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void createTaskButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

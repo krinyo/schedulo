@@ -4,5 +4,6 @@ namespace schedulo.Models
     {
         public int Id { get; set; }
         public string? StatusName { get; set; }
+        public int Order {  get; set; }
     }
 }

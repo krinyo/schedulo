@@ -7,7 +7,6 @@ namespace schedulo.Data
     public class MyDbContext : DbContext
     {
         private readonly IConfiguration Configuration;
-        public DbSet<User> Users { get; set; }
         public DbSet<Models.Task> Tasks { get; set; }
         public DbSet<Status> Statuses { get; set; }
 
@@ -34,8 +33,8 @@ namespace schedulo.Data
                 if (!Statuses.Any())
                 {
                     // Если нет, то добавляем начальные статусы
-                    Statuses.Add(new Status { StatusName = "Новый" });
-                    Statuses.Add(new Status { StatusName = "Выполненный" });
+                    Statuses.Add(new Status { StatusName = "Новая", Order = 0});
+                    Statuses.Add(new Status { StatusName = "Выполненная", Order = 1});
 
                     // Сохраняем изменения
                     SaveChanges();
