@@ -1,4 +1,5 @@
-﻿using System;
+﻿using schedulo.Custom;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,13 +30,14 @@ namespace schedulo.Views
             endedTasksListBox.Items.Clear();
             foreach (var task in tasks)
             {
+                var taskItem = new TaskItem($"{task.Content}", task.Id);
                 if (task.TaskStatus.StatusName == "Новая")
                 {
-                    newTasksListBox.Items.Add(new Tuple<string, int>($"{task.Content} - {task.TaskStatus.StatusName}", task.Id));
+                    newTasksListBox.Items.Add(taskItem);
                 }
                 else if (task.TaskStatus.StatusName == "Выполненная")
                 {
-                    endedTasksListBox.Items.Add(new Tuple<string, int>($"{task.Content} - {task.TaskStatus.StatusName}", task.Id));
+                    endedTasksListBox.Items.Add(taskItem);
                 }
             }
         }
@@ -43,7 +45,8 @@ namespace schedulo.Views
         {
             if (newTasksListBox.SelectedItem != null)
             {
-                var selectedTaskId = ((Tuple<string, int>)newTasksListBox.SelectedItem).Item2;
+                var selectedTask = (TaskItem)newTasksListBox.SelectedItem;
+                int selectedTaskId = selectedTask.Id;
                 AdvanceTask?.Invoke(selectedTaskId);
             }
         }

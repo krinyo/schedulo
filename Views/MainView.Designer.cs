@@ -1,4 +1,5 @@
-﻿namespace schedulo.Views
+﻿using schedulo.Custom;
+namespace schedulo.Views
 {
     partial class MainView
     {
@@ -29,17 +30,21 @@
         private void InitializeComponent()
         {
             createTaskButton = new Button();
-            newTasksListBox = new ListBox();
+            newTasksListBox = new MultiLineListBox();
             taskContentTextBox = new TextBox();
-            endedTasksListBox = new ListBox();
+            endedTasksListBox = new MultiLineListBox();
             advanceTaskButton = new Button();
+            newTasksLabel = new Label();
+            endedTasksLabel = new Label();
             SuspendLayout();
             // 
             // createTaskButton
             // 
-            createTaskButton.Location = new Point(326, 11);
+            createTaskButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            createTaskButton.Location = new Point(419, 15);
+            createTaskButton.Margin = new Padding(4);
             createTaskButton.Name = "createTaskButton";
-            createTaskButton.Size = new Size(64, 24);
+            createTaskButton.Size = new Size(82, 31);
             createTaskButton.TabIndex = 0;
             createTaskButton.Text = "Create Task";
             createTaskButton.UseVisualStyleBackColor = true;
@@ -47,52 +52,88 @@
             // 
             // newTasksListBox
             // 
-            newTasksListBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            newTasksListBox.BackColor = Color.FromArgb(223, 244, 255);
+            newTasksListBox.DrawMode = DrawMode.OwnerDrawVariable;
+            newTasksListBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             newTasksListBox.FormattingEnabled = true;
-            newTasksListBox.ItemHeight = 32;
-            newTasksListBox.Location = new Point(12, 41);
+            newTasksListBox.ItemHeight = 21;
+            newTasksListBox.Location = new Point(13, 86);
+            newTasksListBox.Margin = new Padding(4);
             newTasksListBox.Name = "newTasksListBox";
-            newTasksListBox.Size = new Size(308, 356);
+            newTasksListBox.Size = new Size(395, 193);
             newTasksListBox.TabIndex = 1;
             // 
             // taskContentTextBox
             // 
-            taskContentTextBox.Location = new Point(12, 12);
+            taskContentTextBox.BackColor = Color.FromArgb(223, 244, 255);
+            taskContentTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            taskContentTextBox.Location = new Point(15, 17);
+            taskContentTextBox.Margin = new Padding(4);
             taskContentTextBox.Name = "taskContentTextBox";
-            taskContentTextBox.Size = new Size(308, 23);
+            taskContentTextBox.Size = new Size(395, 29);
             taskContentTextBox.TabIndex = 2;
             taskContentTextBox.Text = "Task content";
             taskContentTextBox.TextChanged += taskContentTextBox_TextChanged;
             // 
             // endedTasksListBox
             // 
-            endedTasksListBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            endedTasksListBox.BackColor = Color.FromArgb(223, 244, 255);
+            endedTasksListBox.DrawMode = DrawMode.OwnerDrawVariable;
+            endedTasksListBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             endedTasksListBox.FormattingEnabled = true;
-            endedTasksListBox.ItemHeight = 32;
-            endedTasksListBox.Location = new Point(396, 41);
+            endedTasksListBox.ItemHeight = 21;
+            endedTasksListBox.Location = new Point(509, 86);
+            endedTasksListBox.Margin = new Padding(4);
             endedTasksListBox.Name = "endedTasksListBox";
-            endedTasksListBox.Size = new Size(309, 356);
+            endedTasksListBox.Size = new Size(396, 193);
             endedTasksListBox.TabIndex = 3;
             // 
             // advanceTaskButton
             // 
-            advanceTaskButton.Location = new Point(326, 41);
+            advanceTaskButton.Location = new Point(419, 84);
+            advanceTaskButton.Margin = new Padding(4);
             advanceTaskButton.Name = "advanceTaskButton";
-            advanceTaskButton.Size = new Size(64, 355);
+            advanceTaskButton.Size = new Size(82, 195);
             advanceTaskButton.TabIndex = 4;
             advanceTaskButton.Text = "AdvanceTask";
             advanceTaskButton.UseVisualStyleBackColor = true;
             // 
+            // newTasksLabel
+            // 
+            newTasksLabel.AutoSize = true;
+            newTasksLabel.ForeColor = Color.FromArgb(223, 244, 255);
+            newTasksLabel.Location = new Point(131, 61);
+            newTasksLabel.Name = "newTasksLabel";
+            newTasksLabel.Size = new Size(111, 21);
+            newTasksLabel.TabIndex = 5;
+            newTasksLabel.Text = "Новые задачи";
+            // 
+            // endedTasksLabel
+            // 
+            endedTasksLabel.AutoSize = true;
+            endedTasksLabel.ForeColor = Color.FromArgb(223, 244, 255);
+            endedTasksLabel.Location = new Point(631, 61);
+            endedTasksLabel.Name = "endedTasksLabel";
+            endedTasksLabel.Size = new Size(164, 21);
+            endedTasksLabel.TabIndex = 6;
+            endedTasksLabel.Text = "Выполненные задачи";
+            // 
             // MainView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(717, 408);
+            BackColor = Color.FromArgb(17, 65, 101);
+            ClientSize = new Size(922, 292);
+            Controls.Add(endedTasksLabel);
+            Controls.Add(newTasksLabel);
             Controls.Add(advanceTaskButton);
             Controls.Add(endedTasksListBox);
             Controls.Add(taskContentTextBox);
             Controls.Add(newTasksListBox);
             Controls.Add(createTaskButton);
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            Margin = new Padding(4);
+            MinimumSize = new Size(938, 296);
             Name = "MainView";
             Text = "schedulo";
             ResumeLayout(false);
@@ -102,9 +143,11 @@
         #endregion
 
         private Button createTaskButton;
-        private ListBox newTasksListBox;
+        private MultiLineListBox newTasksListBox;
         private TextBox taskContentTextBox;
-        private ListBox endedTasksListBox;
+        private MultiLineListBox endedTasksListBox;
         private Button advanceTaskButton;
+        private Label newTasksLabel;
+        private Label endedTasksLabel;
     }
 }
